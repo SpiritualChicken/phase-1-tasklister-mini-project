@@ -35,7 +35,7 @@ function createToDo(todo) {
     li.style.color = "black";
     li.className = "standard-priority";
   }
-  
+  reorderTasks();
 }
 
 function handleDelete(e) {
@@ -48,21 +48,31 @@ function fontColorSelector (e) {
   } 
 }
 
-/*
+function reorderTasks() {
+  const tasksList = document.querySelector('#tasks');
+  const taskItems = Array.from(tasksList.children);
 
+  taskItems.sort((a, b) => {
+    const priorityValues = {
+      'high-priority': 3,
+      'standard-priority': 2,
+      'low-priority': 1,
+    };
 
+    const priorityA = priorityValues[a.className];
+    const priorityB = priorityValues[b.className];
 
-function handleSort () {
-  const list = document.querySelector("#list")
-  const listItems = Array.from(list.getElementsByTagName('li'))
-  const listItemObjects = listItems.map(function(item) {
-    const color = getComputedStyle(item).color;
-    return { element: item, color: color }})
-  listItemObjects.sort(function(a, b) {
-    return a.color.localeCompare(b.color);
+    return priorityB - priorityA;
   });
-  list.innerHTML = '';
-  listItemObjects.forEach(function(itemObject) {
-    list.appendChild(itemObject.element);
-  });
-  } */
+
+  taskItems.forEach(item => tasksList.appendChild(item));
+}
+
+
+
+
+
+
+
+
+

@@ -25,12 +25,15 @@ function createToDo(todo) {
   li.appendChild(btn);
   document.querySelector('#tasks').append(li)
   if (document.querySelector('#priority').value === 'high-priority') {
-    li.style.color = "red"  
+    li.style.color = "red";
+    li.className = "high-priority";
    // potenitally add filter here, that ranks based on "priority"
   } else if (document.querySelector('#priority').value === 'low-priority') {
-    li.style.color = "green"  
+    li.style.color = "green"; 
+    li.className = "low-priority"; 
   } else if (document.querySelector('#priority').value === 'standard-priority') {
-    li.style.color = "black"
+    li.style.color = "black";
+    li.className = "standard-priority";
   }
   
 }
